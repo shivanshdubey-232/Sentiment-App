@@ -27,11 +27,6 @@ def analyze_sentiment():
     else:
         return "Please provide a 'sentence' parameter in the query string.", 400
 
-if __name__ == "__main__":
-    # Run Flask app with Gunicorn
-    from gunicorn.app.wsgiapp import WSGIApplication
-
-    gunicorn_app = WSGIApplication()
-    gunicorn_app.app_uri = "your_module_name:app"  # Replace "your_module_name" with the actual name of your module
-
-    gunicorn_app.run()
+# Run Flask app with external access
+from werkzeug.serving import run_simple
+run_simple('0.0.0.0', 9000, app)
